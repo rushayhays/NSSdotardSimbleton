@@ -1,0 +1,12 @@
+.business-card {
+    height: 150px;
+    width:fit-content;
+    overflow: hidden;
+}
+
+.odd {
+    background-color: gray;
+}
+.business-card:hover {
+    height:fit-content;
+}
