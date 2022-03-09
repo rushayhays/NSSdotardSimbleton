@@ -1,4 +1,5 @@
-import { searchHTMLFormattter} from "./searchHTML.js"
+import { searchCompanyFormattter} from "./searchHTML.js"
+import { searchAgentFormattter} from "./searchHTML.js"
 import { getSearchList } from "./searchData.js"
 
 const businessList = getSearchList();
@@ -16,7 +17,27 @@ document
                foundBusiness = business;
            }
         }
-        companySearchResultArticle.innerHTML = `${searchHTMLFormattter(foundBusiness)}`
+        companySearchResultArticle.innerHTML = `${searchCompanyFormattter(foundBusiness)}`
+    }
+          
+});
+
+let agentSearchResultArticle = document.querySelector(".foundAgents")
+let foundAgent = {};
+
+document
+.querySelector("#agentSearch")
+.addEventListener("keypress", keyPressEvent => {
+    if (keyPressEvent.charCode === 13) {
+        
+       for(const agentObj of businessList){
+           if (agentObj.purchasingAgent.nameFirst.includes(keyPressEvent.target.value)) { 
+               foundAgent = agentObj;
+           } else if (agentObj.purchasingAgent.nameLast.includes(keyPressEvent.target.value)){
+               foundAgent = agentObj;
+           }
+        }
+        agentSearchResultArticle.innerHTML = `${searchAgentFormattter(foundAgent)}`
     }
           
 });
